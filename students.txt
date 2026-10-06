@@ -1,0 +1,8 @@
+103,Prajwal G M,18,CSE,98.0,3
+104,Puneeth N,19,CSE,97.0,4
+102,Pavanraj,19,CSE,95.0,2
+101,Prajwal Nimbure,19,CSE,95.0,1
+105,Rakesh,19,ECE,90.0,5
+106,Sai,20,ME,89.0,6
+107,Ganesh,20,EEE,88.0,7
+108,Basva,19,CIVIL,85.0,8

@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management System</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+<!-- =========================================================
+     LOGIN PAGE
+========================================================= -->
+
+<div id="loginPage" class="login-page">
+
+    <div class="login-background">
+
+        <div class="login-card">
+
+            <div class="login-brand">
+
+                <div class="brand-logo">
+                    🎓
+                </div>
+
+                <h1>Student Management</h1>
+
+                <p>
+                    Smart Academic Management System
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter password"
+                            autocomplete="current-password"
+                            required>
+
+                        <button
+                            type="button"
+                            id="passwordToggle"
+                            class="password-toggle">
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="login-options">
+
+                    <label class="remember-label">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe">
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="loginButton"
+                    class="login-button">
+
+                    <span>Sign In</span>
+
+                </button>
+
+
+                <div
+                    id="loginMessage"
+                    class="login-message">
+                </div>
+
+            </form>
+
+
+            <div class="login-demo">
+
+                <div>
+                    <strong>Admin:</strong>
+                    admin / admin123
+                </div>
+
+                <div>
+                    <strong>User:</strong>
+                    user / user123
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     DASHBOARD PAGE
+========================================================= -->
+
+<div
+    id="dashboardPage"
+    class="dashboard-page hidden">
+
+
+    <!-- SIDEBAR -->
+
+    <aside
+        id="sidebar"
+        class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="sidebar-logo">
+                🎓
+            </div>
+
+            <div>
+
+                <h2>StudentMS</h2>
+
+                <span>
+                    Management System
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <button
+                class="nav-item active"
+                data-section="dashboardSection">
+
+                <span class="nav-icon">🏠</span>
+                <span>Dashboard</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="studentsSection">
+
+                <span class="nav-icon">👨‍🎓</span>
+                <span>Students</span>
+
+            </button>
+
+
+            <button
+                class="nav-item admin-only"
+                data-section="addStudentSection">
+
+                <span class="nav-icon">➕</span>
+                <span>Add Student</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="reportsSection">
+
+                <span class="nav-icon">📊</span>
+                <span>Reports & Analytics</span>
+
+            </button>
+
+
+            <button
+                class="nav-item admin-only"
+                data-section="settingsSection">
+
+                <span class="nav-icon">⚙️</span>
+                <span>Settings</span>
+
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-user">
+
+            <div
+                id="sidebarUserInitial"
+                class="user-avatar">
+                A
+            </div>
+
+            <div class="sidebar-user-info">
+
+                <strong id="sidebarUsername">
+                    Administrator
+                </strong>
+
+                <span id="sidebarRole">
+                    Administrator
+                </span>
+
+            </div>
+
+            <button
+                id="logoutButton"
+                class="logout-icon"
+                title="Logout">
+                ↪
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <button
+                id="menuButton"
+                class="menu-button">
+                ☰
+            </button>
+
+
+            <div class="page-heading">
+
+                <h1 id="pageTitle">
+                    Dashboard
+                </h1>
+
+                <p id="pageSubtitle">
+                    Overview of your student management system
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div
+                    id="currentDate"
+                    class="current-date">
+                </div>
+
+                <div class="topbar-user">
+
+                    <div
+                        id="topbarUserInitial"
+                        class="user-avatar">
+                        A
+                    </div>
+
+                    <div>
+
+                        <strong id="currentUsername">
+                            Administrator
+                        </strong>
+
+                        <span id="currentRole">
+                            Administrator
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             DASHBOARD SECTION
+        ================================================== -->
+
+        <section
+            id="dashboardSection"
+            class="dashboard-section">
+
+
+            <div class="welcome-banner">
+
+                <div>
+
+                    <span class="welcome-small">
+                        Welcome back 👋
+                    </span>
+
+                    <h2>
+                        Hello,
+                        <span id="welcomeName">
+                            Administrator
+                        </span>
+                    </h2>
+
+                    <p>
+                        Here's what's happening with your students today.
+                    </p>
+
+                </div>
+
+                <div class="welcome-icon">
+                    🎓
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👨‍🎓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Students
+                        </span>
+
+                        <strong id="totalStudents">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✅
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Passed Students
+                        </span>
+
+                        <strong id="passedStudents">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ❌
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Failed Students
+                        </span>
+
+                        <strong id="failedStudents">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📈
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Average Marks
+                        </span>
+
+                        <strong id="averageMarks">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Recent Students
+                        </h3>
+
+                        <p>
+                            Recently added student records
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="secondary-button"
+                        onclick="showSection('studentsSection')">
+
+                        View All
+
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Branch</th>
+                                <th>Marks</th>
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="recentStudentsTable">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             STUDENTS SECTION
+        ================================================== -->
+
+        <section
+            id="studentsSection"
+            class="dashboard-section hidden">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Student Management
+                    </h2>
+
+                    <p>
+                        View, search and manage student records
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-button admin-only"
+                    onclick="showSection('addStudentSection')">
+
+                    + Add Student
+
+                </button>
+
+            </div>
+
+
+            <div class="toolbar">
+
+                <div class="search-box">
+
+                    <span>🔍</span>
+
+                    <input
+                        type="text"
+                        id="studentSearch"
+                        placeholder="Search by name, ID, roll number or branch...">
+
+                </div>
+
+
+                <select id="sortStudents">
+
+                    <option value="default">
+                        Sort: Default
+                    </option>
+
+                    <option value="nameAsc">
+                        Name A-Z
+                    </option>
+
+                    <option value="nameDesc">
+                        Name Z-A
+                    </option>
+
+                    <option value="marksHigh">
+                        Marks High-Low
+                    </option>
+
+                    <option value="marksLow">
+                        Marks Low-High
+                    </option>
+
+                    <option value="idAsc">
+                        ID Low-High
+                    </option>
+
+                    <option value="idDesc">
+                        ID High-Low
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            All Students
+                        </h3>
+
+                        <p>
+                            <span id="studentCount">
+                                0
+                            </span>
+                            student records
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Roll No</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Branch</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="studentsTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ADD STUDENT SECTION
+        ================================================== -->
+
+        <section
+            id="addStudentSection"
+            class="dashboard-section hidden">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Add New Student
+                    </h2>
+
+                    <p>
+                        Create a new student record
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card form-card">
+
+                <form id="addStudentForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="studentId">
+                                Student ID
+                            </label>
+
+                            <input
+                                type="number"
+                                id="studentId"
+                                min="1"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="rollNo">
+                                Roll Number
+                            </label>
+
+                            <input
+                                type="number"
+                                id="rollNo"
+                                min="1"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="studentName">
+                                Student Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="studentName"
+                                placeholder="Enter full name"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="studentAge">
+                                Age
+                            </label>
+
+                            <input
+                                type="number"
+                                id="studentAge"
+                                min="1"
+                                max="100"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="studentBranch">
+                                Branch
+                            </label>
+
+                            <select
+                                id="studentBranch"
+                                required>
+
+                                <option value="">
+                                    Select Branch
+                                </option>
+
+                                <option value="CSE">CSE</option>
+                                <option value="ISE">ISE</option>
+                                <option value="ECE">ECE</option>
+                                <option value="EEE">EEE</option>
+                                <option value="ME">ME</option>
+                                <option value="CIVIL">CIVIL</option>
+                                <option value="AIML">AIML</option>
+                                <option value="DS">DS</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="studentMarks">
+                                Marks
+                            </label>
+
+                            <input
+                                type="number"
+                                id="studentMarks"
+                                min="0"
+                                max="100"
+                                step="0.01"
+                                placeholder="0 - 100"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="addStudentMessage"
+                        class="form-message">
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            onclick="showSection('studentsSection')">
+
+                            Cancel
+
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-button">
+
+                            Add Student
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             REPORTS SECTION
+        ================================================== -->
+
+        <section
+            id="reportsSection"
+            class="dashboard-section hidden">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Advanced Reports & Analytics
+                    </h2>
+
+                    <p>
+                        Analyze student performance and academic results
+                    </p>
+
+                </div>
+
+                <button
+                    id="printReportButton"
+                    class="secondary-button">
+
+                    🖨 Print Report
+
+                </button>
+
+            </div>
+
+
+            <div class="report-filters">
+
+                <div class="search-box">
+
+                    <span>🔍</span>
+
+                    <input
+                        type="text"
+                        id="reportSearch"
+                        placeholder="Search students...">
+
+                </div>
+
+
+                <select id="reportBranchFilter">
+
+                    <option value="all">
+                        All Branches
+                    </option>
+
+                    <option value="CSE">CSE</option>
+                    <option value="ISE">ISE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="ME">ME</option>
+                    <option value="CIVIL">CIVIL</option>
+                    <option value="AIML">AIML</option>
+                    <option value="DS">DS</option>
+
+                </select>
+
+
+                <select id="reportResultFilter">
+
+                    <option value="all">
+                        All Results
+                    </option>
+
+                    <option value="PASS">
+                        Passed
+                    </option>
+
+                    <option value="FAIL">
+                        Failed
+                    </option>
+
+                </select>
+
+
+                <button
+                    id="resetReportFilters"
+                    class="secondary-button">
+
+                    Reset
+
+                </button>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+                <div class="analytics-card">
+
+                    <span>
+                        Total Students
+                    </span>
+
+                    <strong id="reportTotalStudents">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <span>
+                        Average Marks
+                    </span>
+
+                    <strong id="reportAverageMarks">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <span>
+                        Highest Marks
+                    </span>
+
+                    <strong id="highestMarks">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <span>
+                        Lowest Marks
+                    </span>
+
+                    <strong id="lowestMarks">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-panels">
+
+                <div class="content-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Pass / Fail Analysis
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="percentage-row">
+
+                        <div>
+
+                            <span>
+                                Pass Percentage
+                            </span>
+
+                            <strong id="analyticsPassPercentage">
+                                0%
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Fail Percentage
+                            </span>
+
+                            <strong id="analyticsFailPercentage">
+                                0%
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-container">
+
+                        <div
+                            id="passProgressBar"
+                            class="progress-bar pass-progress"
+                            style="width:0%">
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-container">
+
+                        <div
+                            id="failProgressBar"
+                            class="progress-bar fail-progress"
+                            style="width:0%">
+                        </div>
+
+                    </div>
+
+
+                    <p
+                        id="performanceMessage"
+                        class="performance-message">
+                    </p>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Performance Leaders
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="leader-box">
+
+                        <span>
+                            🏆 Highest
+                        </span>
+
+                        <strong id="analyticsHighestStudent">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="leader-box">
+
+                        <span>
+                            📉 Lowest
+                        </span>
+
+                        <strong id="analyticsLowestStudent">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+                <div class="analytics-card">
+
+                    <span>
+                        Passed
+                    </span>
+
+                    <strong id="analyticsPassedCount">
+                        0
+                    </strong>
+
+                    <small id="analyticsPassTotal">
+                        0%
+                    </small>
+
+                </div>
+
+
+                <div class="analytics-card">
+
+                    <span>
+                        Failed
+                    </span>
+
+                    <strong id="analyticsFailedCount">
+                        0
+                    </strong>
+
+                    <small id="analyticsFailTotal">
+                        0%
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Branch Analytics
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="branchAnalytics"
+                    class="branch-analytics">
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Grade Distribution
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="gradeDistribution"
+                    class="grade-distribution">
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Top 5 Students
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Branch</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="topStudentsTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Detailed Report
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Roll No</th>
+                                <th>Branch</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="reportsTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SETTINGS SECTION
+        ================================================== -->
+
+        <section
+            id="settingsSection"
+            class="dashboard-section hidden">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Settings
+                    </h2>
+
+                    <p>
+                        Manage your account information
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="settings-card">
+
+                <div
+                    id="settingsAvatarInitial"
+                    class="settings-avatar">
+                    A
+                </div>
+
+
+                <div class="settings-info">
+
+                    <h3>
+                        Account Information
+                    </h3>
+
+
+                    <div class="settings-row">
+
+                        <span>
+                            Username
+                        </span>
+
+                        <strong id="settingsUsername">
+                            Administrator
+                        </strong>
+
+                    </div>
+
+
+                    <div class="settings-row">
+
+                        <span>
+                            Role
+                        </span>
+
+                        <strong id="settingsRole">
+                            Administrator
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     VIEW STUDENT MODAL
+========================================================= -->
+
+<div
+    id="studentModal"
+    class="modal hidden">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="modalTitle">
+                    Student Details
+                </h2>
+
+            </div>
+
+            <button
+                type="button"
+                id="closeResultButton"
+                class="modal-close-button">
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="modalBody"
+            class="modal-body">
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                id="printResultButton"
+                class="secondary-button">
+
+                🖨 Print
+
+            </button>
+
+            <button
+                type="button"
+                id="closeResultButton2"
+                class="primary-button">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     EDIT STUDENT MODAL
+========================================================= -->
+
+<div
+    id="editStudentModal"
+    class="modal hidden">
+
+    <div class="modal-content edit-modal-content">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Edit Student
+                </h2>
+
+                <p>
+                    Update student information
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                id="closeEditModal"
+                class="modal-close-button">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="editStudentForm">
+
+            <input
+                type="hidden"
+                id="editStudentId"
+                name="editStudentId">
+
+
+            <div class="edit-form-grid">
+
+                <div class="form-group">
+
+                    <label for="editStudentIdDisplay">
+                        Student ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editStudentIdDisplay"
+                        readonly
+                        class="readonly-input">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editStudentName">
+                        Student Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editStudentName"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editRollNo">
+                        Roll Number
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editRollNo"
+                        min="1"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editStudentAge">
+                        Age
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editStudentAge"
+                        min="1"
+                        max="100"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editStudentBranch">
+                        Branch
+                    </label>
+
+                    <select
+                        id="editStudentBranch"
+                        required>
+
+                        <option value="">
+                            Select Branch
+                        </option>
+
+                        <option value="CSE">CSE</option>
+                        <option value="ISE">ISE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EEE">EEE</option>
+                        <option value="ME">ME</option>
+                        <option value="CIVIL">CIVIL</option>
+                        <option value="AIML">AIML</option>
+                        <option value="DS">DS</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editStudentMarks">
+                        Marks
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editStudentMarks"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <div class="edit-result-preview">
+
+                <span class="preview-label">
+                    Result Preview
+                </span>
+
+                <div class="preview-values">
+
+                    <strong id="editPreviewGrade">
+                        -
+                    </strong>
+
+                    <strong id="editPreviewStatus">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="editStudentMessage"
+                class="form-message">
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    id="cancelEditButton"
+                    class="secondary-button">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    id="saveEditButton"
+                    class="primary-button">
+
+                    Save Changes
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     DELETE MODAL
+========================================================= -->
+
+<div
+    id="deleteConfirmModal"
+    class="modal hidden">
+
+    <div class="modal-content small-modal">
+
+        <div class="delete-icon">
+            ⚠️
+        </div>
+
+        <h2>
+            Delete Student?
+        </h2>
+
+        <p>
+            Are you sure you want to delete
+            <strong id="deleteStudentName">
+                this student
+            </strong>?
+        </p>
+
+        <p class="danger-text">
+            This action cannot be undone.
+        </p>
+
+
+        <div
+            id="deleteMessage"
+            class="form-message">
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                id="cancelDeleteButton"
+                class="secondary-button">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                type="button"
+                id="confirmDeleteButton"
+                class="danger-button">
+
+                Delete Student
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
