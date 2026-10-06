@@ -19,8 +19,8 @@ public class Server {
 
     private static final int PORT = 8080;
 
-    private static final String WEBSITE_FOLDER =
-            "C:\\Users\\Prajwal\\Desktop\\Java\\StudentManagementWebsite";
+private static final String WEBSITE_FOLDER =
+        System.getProperty("user.dir");
 
     private static final String DATA_FILE =
             "C:\\Users\\Prajwal\\Desktop\\Java\\students.txt";
